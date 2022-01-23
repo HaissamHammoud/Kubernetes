@@ -1,0 +1,7 @@
+# Commands
+
+port forward
+kubectl por-forward deployments/<name> OR pods/name OR replicaset/<name> OR service/<name>
+
+using selectors
+kubectl get pods -o wide --show-labels --selector=app=kuard
