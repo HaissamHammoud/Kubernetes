@@ -14,7 +14,7 @@ spec:
             name: kuard-service
             port:
               number: 8080
-  - host: "receitas.home.local.com"
+  - host: "receitas.local.home.com"
     http:
       paths:
       - pathType: Prefix
@@ -23,4 +23,14 @@ spec:
           service:
             name: recipe
             port:
-              number: 8080
+              number: 80
+  - host: "grafana.local.home.com"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: grafana
+            port:
+              number: 3000

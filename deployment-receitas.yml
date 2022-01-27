@@ -6,7 +6,7 @@ spec:
   selector:
     matchLabels:
       run: recipe
-  replicas: 3
+  replicas: 1
   template:
     metadata:
       name: recipe
@@ -19,7 +19,7 @@ spec:
         hostPath:
           path: "/exports"
       containers:
-      - image: haissamfawaz/cookingsqlite:latest
+      - image: haissamfawaz/cooking-recipe-image:latest
         name: recipe
         volumeMounts:
         - mountPath: "/data"
@@ -34,7 +34,7 @@ spec:
         livenessProbe:
           httpGet:
             path: /healthy
-            port: 8080
+            port: 80
           initialDelaySeconds: 5
           timeoutSeconds: 1
           periodSeconds: 10
@@ -42,13 +42,26 @@ spec:
         readinessProbe:
           httpGet:
             path: /ready
-            port: 8080
+            port: 80
           periodSeconds: 2
           initialDelaySeconds: 0
           failureThreshold: 3
           successThreshold: 1
         ports:
-        - containerPort: 8080
-          name: http
+        - containerPort: 80
+          name: http-recipe
           protocol: TCP
-    
+---
+  apiVersion: v1
+  kind: Service
+  metadata:
+    name: recipe
+  spec:
+    ports:
+      - port: 80
+        protocol: TCP
+        targetPort: http-recipe
+    selector:
+      app: recipe
+    sessionAffinity: None
+    type: LoadBalancer
