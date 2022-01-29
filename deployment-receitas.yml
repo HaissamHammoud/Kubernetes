@@ -19,7 +19,7 @@ spec:
         hostPath:
           path: "/exports"
       containers:
-      - image: haissamfawaz/cooking-recipe-image:latest
+      - image: haissamfawaz/cooking-recipe-image:3.0
         name: recipe
         volumeMounts:
         - mountPath: "/data"

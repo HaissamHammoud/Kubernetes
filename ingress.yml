@@ -34,3 +34,13 @@ spec:
             name: grafana
             port:
               number: 3000
+  - host: "postgres.local.home.com"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: postgres
+            port:
+              number: 5432
