@@ -5,3 +5,7 @@ kubectl por-forward deployments/<name> OR pods/name OR replicaset/<name> OR serv
 
 using selectors
 kubectl get pods -o wide --show-labels --selector=app=kuard
+
+# Helm
+
+helm install prometheus prometheus-community/kube-prometheus-stack
