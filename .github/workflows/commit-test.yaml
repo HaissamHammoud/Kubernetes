@@ -9,7 +9,7 @@ on:
 
 jobs:
   write-something:
-  runs-on: self-hosted
+  runs-on: ubuntu-latest
     - name: create-write-file
       run: 
         echo ${{ github.sha }} > arquivosha.txt
