@@ -27,6 +27,6 @@ jobs:
       - name: Commmit And Push Changes
         run: |
           git status
-          git add deploy/${{ env.ENV_TO }}/values-app.yaml
+          git add .
           git commit -m "[skip ci] Auto commit: Update production image value on helm values"
           git push origin ${GITHUB_REF##*/}
