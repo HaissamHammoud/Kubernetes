@@ -12,13 +12,13 @@ jobs:
   runs-on: ubuntu-latest
   steps:
     - name: create-write-file
-      run: 
+      run: |
         echo ${{ github.sha }} > arquivosha.txt
 
     - name: Setup Git 
-        run: |
-          git config --local user.name github-actions
-          git config --local user.email github-actions@github.com
+      run: |
+        git config --local user.name github-actions
+        git config --local user.email github-actions@github.com
 
     - name: Commmit And Push Changes
       run: |
