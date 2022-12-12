@@ -9,20 +9,21 @@ on:
 
 jobs:
   write-something:
-  runs-on: ubuntu-latest
-  steps:
-    - name: create-write-file
-      run: |
-        echo ${{ github.sha }} > arquivosha.txt
+    name: do something
+    runs-on: ubuntu-latest
+    steps:
+      - name: create-write-file
+        run: |
+          echo ${{ github.sha }} > arquivosha.txt
 
-    - name: Setup Git 
-      run: |
-        git config --local user.name github-actions
-        git config --local user.email github-actions@github.com
+      - name: Setup Git 
+        run: |
+          git config --local user.name github-actions
+          git config --local user.email github-actions@github.com
 
-    - name: Commmit And Push Changes
-      run: |
-        git status
-        git add deploy/${{ env.ENV_TO }}/values-app.yaml
-        git commit -m "[skip ci] Auto commit: Update production image value on helm values"
-        git push origin ${GITHUB_REF##*/}
+      - name: Commmit And Push Changes
+        run: |
+          git status
+          git add deploy/${{ env.ENV_TO }}/values-app.yaml
+          git commit -m "[skip ci] Auto commit: Update production image value on helm values"
+          git push origin ${GITHUB_REF##*/}
