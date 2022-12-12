@@ -9,6 +9,7 @@ on:
 
 jobs:
   write-something:
+  runs-on: self-hosted
     - name: create-write-file
       run: 
         echo ${{ github.sha }} > arquivosha.txt
