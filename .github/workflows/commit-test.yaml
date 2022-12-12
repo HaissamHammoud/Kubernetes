@@ -1,0 +1,26 @@
+on: 
+  workflow_dispatch:
+    branches: [ main ]
+    inputs:
+      version_tag:
+        description: 'The application version goes here (eg: 0.0.1)' 
+        required: true
+        type: string
+
+jobs:
+  write-something:
+    - name: create-write-file
+      run: 
+        echo ${{ github.sha }} > arquivosha.txt
+
+    - name: Setup Git 
+        run: |
+          git config --local user.name github-actions
+          git config --local user.email github-actions@github.com
+
+    - name: Commmit And Push Changes
+      run: |
+        git status
+        git add deploy/${{ env.ENV_TO }}/values-app.yaml
+        git commit -m "[skip ci] Auto commit: Update production image value on helm values"
+        git push origin ${GITHUB_REF##*/}
