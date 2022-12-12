@@ -10,6 +10,7 @@ on:
 jobs:
   write-something:
   runs-on: ubuntu-latest
+  steps:
     - name: create-write-file
       run: 
         echo ${{ github.sha }} > arquivosha.txt
